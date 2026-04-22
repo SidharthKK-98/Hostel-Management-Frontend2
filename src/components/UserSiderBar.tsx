@@ -38,6 +38,11 @@ function UserSiderBar() {
             id:4,
             name:"Complaints",
             route:"/user/complaint"
+        },
+        {
+            id:5,
+            name:"Add Review",
+            route:"/user/comment"
         }
     ]
 

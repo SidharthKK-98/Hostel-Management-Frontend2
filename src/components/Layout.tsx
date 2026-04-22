@@ -19,6 +19,7 @@ import AddGroceries from "./pages/AddGroceries";
 import CookDashboard from "./pages/CookDashboard";
 import CookDashboardLayout from "./CookDashboardLayout";
 import CookViewDailyMenu from "./pages/CookViewDailyMenu";
+import AddComment from "./pages/AddComment";
 
 
 export const Layout = createBrowserRouter([
@@ -99,6 +100,10 @@ export const Layout = createBrowserRouter([
                  {
                     path:"complaint",
                     element:<UserComplaint/>
+                },
+                {
+                    path:"comment",
+                    element:<AddComment/>
                 }
                              
             ]

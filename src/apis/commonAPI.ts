@@ -1,7 +1,10 @@
 import axios,{AxiosError, type Method} from "axios";
-
+const isLocal =
+  location.hostname === "localhost" ||
+  location.hostname === "127.0.0.1";
+  const  baseURL=isLocal?"http://localhost:3000":"https://hostel-management-backend-4jyb.onrender.com"
   
-  const  baseURL="https://hostel-management-backend-4jyb.onrender.com"
+//   const  baseURL="https://hostel-management-backend-4jyb.onrender.com"
 
 
 const api = axios.create({
