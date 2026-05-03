@@ -14,9 +14,9 @@ import { useRemoveComments } from "@/hooks/CommentHooks/useRemoveComments"
 
 type ViewCommentCardProps = {
   comment: GetComment;
-  fromAddComment:boolean
-  setIsEditing:React.Dispatch<React.SetStateAction<boolean>>
-  setCommentData:React.Dispatch<React.SetStateAction<GetComment | null>>
+  fromAddComment?:boolean
+  setIsEditing?:React.Dispatch<React.SetStateAction<boolean>> 
+  setCommentData?:React.Dispatch<React.SetStateAction<GetComment | null>>
 }
 
 function ViewCommentCard({comment,fromAddComment,setIsEditing,setCommentData}:ViewCommentCardProps) {
@@ -28,8 +28,8 @@ function ViewCommentCard({comment,fromAddComment,setIsEditing,setCommentData}:Vi
     }
 
     const handleEdit=()=>{
-        setIsEditing(prev=>!prev)
-        setCommentData(comment)
+        setIsEditing?.(prev=>!prev)
+        setCommentData?.(comment)
     }
 
   return (
