@@ -21,7 +21,8 @@ export interface RoomOccupant {
     _id:string,
     firstName:string,
     photoUrl:string,
-    age:number
+    age:number,
+    gender:string
 
 }
 
@@ -56,7 +57,7 @@ export interface RemoveRoomResponse {
 
 export interface RoomUnassignedUsers{
     message:string,
-    data:User
+    data:User[]
 }
 
 

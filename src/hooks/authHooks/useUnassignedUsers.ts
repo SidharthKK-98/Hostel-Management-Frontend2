@@ -1,12 +1,13 @@
 import { getRoomUnassignedUsers } from "@/apis/authAPIs"
-import { type RoomUnassignedUsers } from "@/Types/hostelConfigTypes"
+import type { User } from "@/Types/authTypes"
+// import { type RoomUnassignedUsers } from "@/Types/hostelConfigTypes"
 import { useQuery } from "@tanstack/react-query"
 
 
 
 export const useUnassignedUsers=()=>{
 
-    return useQuery<RoomUnassignedUsers,Error>({
+    return useQuery<User[],Error>({
         queryKey:["RoomUnassignedUsers"],
         queryFn:async()=>{
             const response =  await getRoomUnassignedUsers()
