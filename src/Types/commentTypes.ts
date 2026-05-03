@@ -30,6 +30,7 @@ export interface GetComment {
     _id: string
     firstName: string
     lastName: string
+    photoUrl:string
   }
 
   rating: number
@@ -49,4 +50,11 @@ export interface GetComment {
 export interface GetCommentsResponse {
   message: string
   data: GetComment[]
+}
+
+export interface EditCommentsPayload {
+  commentId: string
+  rating?: number
+  comment?: string
+  file?: File | null
 }

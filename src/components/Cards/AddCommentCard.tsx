@@ -80,7 +80,7 @@ const handleSubmit=()=>{
   return (
     <div>
 
-            <Card  className="mx-auto w-full max-w-sm">
+            <Card  className=" w-full max-w-sm">
             <CardHeader>
                 <CardTitle>Add Review</CardTitle>
                 <CardDescription>

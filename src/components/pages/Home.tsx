@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import Card from "../Card"
 import { useOutletContext } from "react-router-dom";
+import ViewCommentCard from "../Cards/ViewCommentCard";
+import { useGetComments } from "@/hooks/CommentHooks/useGetComments";
 
 
 type OutletContextType={
@@ -10,6 +12,7 @@ type OutletContextType={
 function Home() {
 
       const { setFromHome } = useOutletContext<OutletContextType>();
+      const {data:comments} = useGetComments()
 
 
  useEffect(() => {
@@ -61,17 +64,17 @@ function Home() {
         </section>
 
         <section id="review" className="h-screen">
-                 <div className="h-screen flex justify-center items-center ">
-            <div className="lg:flex h-1/2 lg:h-auto">
-                {
-                features.map((feature)=>(
-                    <Card 
-                    type="feature" key={feature.id} heading={feature.heading} description={feature.description} image={feature.image}/>
-                ))
-            }
-            </div>
+            <div className="h-screen flex justify-center items-center ">
+                    <div className="lg:flex h-1/2 lg:h-auto">
+                        {
+                        comments?.data.map((comment)=>(
+                            <ViewCommentCard comment={comment}
+                            key={comment._id} />
+                        ))
+                    }
+                    </div>
             
-        </div>
+            </div>
         </section>
     </div>
   )
