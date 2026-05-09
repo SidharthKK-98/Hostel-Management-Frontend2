@@ -18,9 +18,14 @@ function MenuOverview() {
           </div>
 
       {
-        menuSelsction?.data.map(items=>(
-          <MenuHistoryCard key={items._id} items={items}/>
-        ))
+        <div className="grid grid-cols-3 gap-4">
+            {
+                menuSelsction?.data.map(item=>(
+              <MenuHistoryCard key={item._id} item={item}/>
+            ))
+            }
+        </div>
+      
       }
     </div>
   )

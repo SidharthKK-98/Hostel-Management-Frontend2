@@ -26,8 +26,8 @@ const commonAPI = async <T=unknown>(
         return res
 
     }
-    catch(err:any){
-        const axiosError = err as AxiosError<any>
+    catch(err:unknown){
+        const axiosError = err as AxiosError<{ message?: string }>
         throw new Error(
             axiosError.response?.data?.message || "request failed"
         )

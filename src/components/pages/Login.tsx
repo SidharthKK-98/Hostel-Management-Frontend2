@@ -3,7 +3,6 @@ import {
   Card,
   CardAction,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -85,10 +84,9 @@ const clearData= ()=>{
 
     if(!isFormValid()){
     setAlert({
-        type: "error",
-        message: "Please fill all required fields",
+        typeOfAlert: "error",
+        AlertMessage: "Please fill all required fields",
       })   
-    //  alert("Please fill all required fields")
       return
     }
 
@@ -106,8 +104,8 @@ const clearData= ()=>{
               {
               onSuccess:(data)=>{
                   setAlert({
-                      type: "success",
-                      message: data.message,
+                      typeOfAlert: "success",
+                      AlertMessage: data.message,
                     })
               toast.success(data.message)
               const role = data.user.role
@@ -136,15 +134,15 @@ const clearData= ()=>{
             lastName:form.lastName,
             emailId:form.emailId,
             password:form.password,
-            age:form.age,
+            age:form.age !,
             gender:form.gender
 
           },
           {
             onSuccess:(data)=>{
                 setAlert({
-                    type: "success",
-                    message: data.message,
+                    typeOfAlert: "success",
+                    AlertMessage: data.message,
                   }) 
                 navigate("/user",{ replace: true })           
                 clearData()
@@ -158,8 +156,8 @@ const clearData= ()=>{
    
   }
 
-  const handleMode=(e:React.MouseEvent)=>{
-    setMode(e.target.value)
+  const handleMode=(e:React.MouseEvent<HTMLButtonElement>)=>{
+    setMode(e.currentTarget.value as AuthMode)
     clearData()
   }
   return (
@@ -179,8 +177,8 @@ const clearData= ()=>{
 
                 {alert && (
             <AlertDemo
-              typeOfAlert={alert.type}
-              AlertMessage={alert.message}
+              typeOfAlert={alert.typeOfAlert}
+              alertMessage={alert.AlertMessage}
             />
           )}
         <form>
@@ -202,7 +200,7 @@ const clearData= ()=>{
                    <div className="grid grid-cols-2 gap-2">
                      <div className="grid gap-2">
                       <Label htmlFor="age">Age</Label>
-                      <Input id="age" value={form.age} onChange={handleChange} />
+                      <Input id="age" value={form.age !} onChange={handleChange} />
                     </div>
 
                     <div className="grid gap-2">
@@ -248,7 +246,7 @@ const clearData= ()=>{
 
          {isError && (
               <p className="text-red-500 text-sm">
-                {(error as any)?.response?.data?.message || "Login failed"}
+                {error?.message || "Login failed"}
               </p>
             )}
 

@@ -18,8 +18,8 @@ export interface MealEntry{
 
 export interface SelectedMealItem {
     _id:string
-    foodId:string
-    portion:string
+    foodId:Food
+    portion:number
 }
 
 export interface DailyMenuSelectPayload {
@@ -72,9 +72,7 @@ export interface PopulatedDailyMenuSelection {
   __v: number
 }
 
-export interface MenuHistoryCardProps {
-  items: PopulatedDailyMenuSelection
-}
+
 
 export interface GetTotalPricePayload {
   year:number
@@ -83,7 +81,10 @@ export interface GetTotalPricePayload {
 
 export interface GetTotalPriceResponse {
   message:string
-  data:number
+  data:{
+    messPrice:number
+    monthlyTotal:number
+  }
 }
 
 export interface DailyMenuData {

@@ -7,6 +7,7 @@ import { useGetSummary } from "@/hooks/HostelConfigureHooks/useGetSummary"
 import { useGetAllUnresolvedComplaints } from "@/hooks/ComplaintHooks/useGetAllUnresolvedComplaints"
 import { useGetDailyMenu } from "@/hooks/DailyMenuItemsHooks/useGetDailyMenu"
 import { getTomorrow } from "@/utils/getTomorrow"
+import RentCard from "../Cards/RentCard"
 
 function AdminHome() {
 
@@ -33,7 +34,7 @@ function AdminHome() {
                 <StatCard title="Complaints " value={complaint?.data?.length} sub="Pending" />
                 <StatCard title="Tomorrow Menu Status" value={`${isTomorrow ? " Published" : "Not Published"}`} danger />
           </div>
-          <div className="m-2 my-4 lg:grid grid-cols-2 ">
+          <div className="m-2 my-4 lg:grid grid-cols-3 gap-4 ">
 
             <div>
               <ProfileCard viewProfile={viewProfile} setIsEdit={setIsEdit} fromAdmin={fromAdmin}/>
@@ -45,6 +46,10 @@ function AdminHome() {
                   <EditProfileCard setIsEdit={setIsEdit}/>
                 )
               }
+            </div>
+
+            <div>
+              <RentCard/>
             </div>
 
             <div>

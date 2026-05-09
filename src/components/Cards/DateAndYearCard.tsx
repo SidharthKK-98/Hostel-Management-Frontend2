@@ -24,6 +24,7 @@ function DateAndYearAccordion() {
   const [month, setMonth] = useState<string>("")
 
   const {mutate:fetchTotalPrice,data} = useGetTotalPrice()
+  
 
   const handleSubmit = () => {
     if (!month || !year) return alert("Please select month and year")
@@ -31,7 +32,6 @@ function DateAndYearAccordion() {
     const payload = { month:Number(month), year }
    fetchTotalPrice(payload)
   }
-  console.log(data);
   
 
   return (
@@ -82,8 +82,8 @@ function DateAndYearAccordion() {
 
             <div className="font-semibold">
               {
-                data && (
-                  `Total Amount : RS ${data.data}`
+                data?.data && (
+                  `Total Amount : RS ${data?.data?.messPrice}`
                 )
               }
             </div>

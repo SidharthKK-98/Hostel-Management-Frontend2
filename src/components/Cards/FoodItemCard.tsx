@@ -1,71 +1,83 @@
-import type {  FoodItemCardProps } from "@/Types/MenuItemsTypes"
+import type { FoodItemCardProps } from "@/Types/MenuItemsTypes"
 import { Button } from "@/components/ui/button"
-import { useRemoveFoodItems } from "@/hooks/MenuItemsHooks/useRemoveFoodItems";
-import { Pencil, Trash2 } from 'lucide-react';
+import { useRemoveFoodItems } from "@/hooks/MenuItemsHooks/useRemoveFoodItems"
+import { Pencil, Trash2, UtensilsCrossed } from "lucide-react"
 
-function FoodItemCard({foodItem,setIsUpdating,setUpdatingFoodId}:FoodItemCardProps) {
+function FoodItemCard({
+  foodItem,
+  setIsUpdating,
+  setUpdatingFoodId,
+}: FoodItemCardProps) {
+  const { image, name, price, _id } = foodItem
 
-    const{image,name,price,_id} = foodItem
+  const { mutate: removeFoodItem } = useRemoveFoodItems()
 
-    const {mutate:removeFoodItem} = useRemoveFoodItems()
-
-    const removeItem=(itemId:string)=>{
-        removeFoodItem(
-          itemId
-        )
-    }
+  const removeItem = (itemId: string) => {
+    removeFoodItem(itemId)
+  }
 
   return (
-
-    <div >
-      <div className="max-w-[200px]  rounded-[1.5rem] overflow-hidden shadow-2xl  transition-transform duration-300 hover:scale-[1.02]">
-        
-        {/* Image Section  */}
-        <div className="relative p-2 pb-0 ">
-          <div className="relative h-32 w-full overflow-hidden rounded-[1.2rem] border border-gray-800">
-            <img 
-              src={image} 
-              alt="image" 
-              className="w-full h-full object-cover "
-            />
-            {/* Price Badge */}
-            <div className="absolute top-2 right-2 bg-white/80 backdrop-blur-md px-2 py-0.5 rounded-full shadow-lg">
-              <span className="text-[#9A3412] font-bold text-xs">
-                Rs.{price}
-              </span>
-            </div>
+    <div>
+      <div className="max-w-[300px] overflow-hidden rounded-[2rem] bg-[#f8f8f8] shadow-md">
+        {/* Top Section */}
+        <div className="relative flex h-[210px] flex-col items-center justify-center bg-[#f3f3f5] px-6 py-5">
+          {/* Price Badge */}
+          <div className="absolute right-5 top-4 rounded-full border border-gray-200 bg-white px-4 py-1 text-lg font-bold text-black shadow-sm">
+            ₹ {price}
           </div>
-        </div>
 
-        {/* Content Section */}
-        <div className="p-4 pt-3 text-center">
-          <h2 className="text-lg font-bold text-black mb-1 tracking-tight truncate">
+          {/* Food Icon/Image */}
+        <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-white text-gray-300 shadow-sm">
+  {image ? (
+    <img
+      src={image}
+      alt="food image"
+      className="h-full w-full rounded-full object-cover"
+    />
+  ) : (
+    <UtensilsCrossed className="h-10 w-10" />
+  )}
+</div>
+
+          {/* Food Name */}
+          <h2 className="text-2xl font-bold text-gray-300">
             {name}
           </h2>
-         
+        </div>
 
-          {/* Action Buttons  */}
-          <div className="flex flex-col gap-2 justify-center">
-            {/* Update Button */}
-            <Button 
-            onClick={()=>{setIsUpdating(true);setUpdatingFoodId(_id)}}
-            className="w-full flex items-center justify-center gap-1.5 bg-[#82CA65] hover:bg-[#71b854] text-[#064E3B] font-bold py-2 px-3 rounded-full text-[11px] transition-all active:scale-95">
-              <Pencil size={12} strokeWidth={3} />
+        {/* Bottom Section */}
+        <div className="bg-white px-6 py-6">
+          <h2 className="text-xl font-semibold text-black">
+            {name}
+          </h2>
+
+         
+          {/* Buttons */}
+          <div className="mt-6 flex flex-col gap-4">
+            {/* Update */}
+            <Button
+              onClick={() => {
+                setIsUpdating(true)
+                setUpdatingFoodId(_id)
+              }}
+              className="h-10 rounded-2xl border-2 border-green-600 bg-white text-sm font-semibold text-green-600 hover:bg-white"
+            >
+              <Pencil className="mr-2 h-5 w-5" />
               Update
             </Button>
 
-          {/* Remove Button */}
-            <Button 
-            onClick={()=>removeItem(_id)}
-            className="w-full flex items-center justify-center gap-1.5 bg-[#D99991] hover:bg-[#ca877e] text-[#4C1D1D] font-bold py-2 px-3 rounded-full text-[11px] transition-all active:scale-95">
-              <Trash2 size={12} strokeWidth={3} />
+            {/* Remove */}
+            <Button
+              onClick={() => removeItem(_id)}
+              className="h-10 rounded-2xl border-2 border-red-500 bg-white text-sm font-semibold text-red-500 hover:bg-white"
+            >
+              <Trash2 className="mr-2 h-5 w-5" />
               Remove
             </Button>
           </div>
         </div>
       </div>
     </div>
-    
   )
 }
 

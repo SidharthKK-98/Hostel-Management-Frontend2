@@ -11,7 +11,7 @@ export const useDailyMenuPortion = (date:Date | null,options?:Options)=>{
         queryKey:["daily-portion",date?.toDateString().split("T")[0]],
         queryFn:()=>{  
             if (!date) throw new Error("Date is required")
-            getDailyPortion(date)
+                return getDailyPortion(date)
         },
         enabled: options?.enabled
     })

@@ -113,7 +113,7 @@ function PaymentCard() {
             return;
         }
             
-    const payload={amount:data.data,month:Number(month),year:Number(year)}
+    const payload={amount:data.data.monthlyTotal,month:Number(month),year:Number(year)}
     const order = await payment(payload)
      const { key, amount, currency, orderId, notes } = order;
 
@@ -205,7 +205,10 @@ function PaymentCard() {
 
                 {
                     data && showPay &&(
-                        `Total Amount = ${data.data}`
+                          <div>
+                            <p>Mess Amount = {data.data.messPrice}</p>
+                            <p>Total Amount = {data.data.monthlyTotal}</p>
+                          </div>
                     )
                 }
                 {

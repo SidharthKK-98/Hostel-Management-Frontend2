@@ -63,7 +63,7 @@ const handleUpdate=(foodId:string)=>{
         onSuccess:()=>{
           setActive(false)
           setIsUpdating(false)
-          setUpdatingFoodId(false)
+          setUpdatingFoodId(null)
         }
       }
     )
@@ -185,7 +185,7 @@ const handleUpdate=(foodId:string)=>{
             }
           }} 
           className="w-full h-12 rounded-2xl bg-[#3c851f]
-           hover:bg-green-700 text-white font-bold text-md shadow-lg 
+           hover:bg-green-700 text-white font-bold text-md 
            shadow transition-all active:scale-[0.98]">
              {
                 isUpdating?(<div>Update Food Item</div>):

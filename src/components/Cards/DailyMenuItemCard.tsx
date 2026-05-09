@@ -17,7 +17,7 @@ function DailyMenuItemCard({item,selectedMeals,onChange}:DailyMenuItemCardProps)
 
   return (
     <div>
-        <Card className="w-[300px] overflow-hidden border-zinc-200 shadow-sm transition-hover hover:shadow-md">
+        <Card className="w-75 overflow-hidden border-zinc-200 shadow-sm transition-hover hover:shadow-md">
       {/* Image Section */}
       <div className="relative h-48 w-full p-2 ">
         <img
