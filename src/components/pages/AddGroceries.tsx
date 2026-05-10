@@ -2,7 +2,7 @@ import  { useGetGrocery } from "@/hooks/groceryHooks/useGetGrocery"
 import AddGroceryCard from "../Cards/AddGroceryCard"
 import ShowGroceryCard from "../Cards/ShowGroceryCard"
 import { useMemo, useState } from "react"
-import type { Grocery } from "@/types/groceryTypes"
+import type { Grocery } from "../../types/groceryTypes"
 import UpdateGroceryDataCard from "../Cards/UpdateGroceryDataCard"
 
 function AddGroceries() {
