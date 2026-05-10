@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "../ui/input"
 import { Select,SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
-import type { Grocery } from "@/types/groceryTypes"
+import type { Grocery } from "../../types/groceryTypes"
 import { useState } from "react"
 import { useUpdateGrocery } from "@/hooks/groceryHooks/useUpdateGrocery"
 
