@@ -7,7 +7,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { useState } from "react"
-import type { DatePickerProps } from "@/Types/dailyMenuTypes"
+import type { DatePickerProps } from "@/types/dailyMenuTypes"
 import { toast } from "sonner"
 
 

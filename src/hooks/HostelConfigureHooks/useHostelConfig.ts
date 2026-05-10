@@ -1,5 +1,5 @@
 import { getTotalRooms } from "@/apis/hostelConfigAPI"
-import { type HostelConfig } from "@/Types/hostelConfigTypes"
+import { type HostelConfig } from "@/types/hostelConfigTypes"
 import { useQuery } from "@tanstack/react-query"
 
 export const useHostelConfig=()=>{

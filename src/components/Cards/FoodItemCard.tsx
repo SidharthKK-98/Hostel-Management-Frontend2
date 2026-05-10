@@ -1,4 +1,4 @@
-import type { FoodItemCardProps } from "@/Types/MenuItemsTypes"
+import type { FoodItemCardProps } from "@/types/MenuItemsTypes"
 import { Button } from "@/components/ui/button"
 import { useRemoveFoodItems } from "@/hooks/MenuItemsHooks/useRemoveFoodItems"
 import { Pencil, Trash2, UtensilsCrossed } from "lucide-react"

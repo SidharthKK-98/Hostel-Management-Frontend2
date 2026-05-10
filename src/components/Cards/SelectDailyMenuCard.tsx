@@ -1,10 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Minus, Utensils } from "lucide-react";
-import type {  DailyMenuCardProps } from "@/Types/dailyMenuTypes"
-import type { OrderSelection } from "@/Types/selectDailyMenuTypes";
+import type {  DailyMenuCardProps } from "@/types/dailyMenuTypes"
+import type { OrderSelection } from "@/types/selectDailyMenuTypes";
 import { useState } from "react";
-import type { FoodItem } from "@/Types/MenuItemsTypes";
+import type { FoodItem } from "@/types/MenuItemsTypes";
 import { useDailyMenuSelection } from "@/hooks/MenuSelectionHooks/useDailyMenuSelection";
 
 function SelectDailyMenuCard({menu}:DailyMenuCardProps) {

@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card"
-import type { MenuHistoryCardProps } from "@/Types/selectDailyMenuTypes"
+import type { MenuHistoryCardProps } from "@/types/selectDailyMenuTypes"
 
 function MenuHistoryCard({ item }: MenuHistoryCardProps) {
   const today = new Date(item.date)

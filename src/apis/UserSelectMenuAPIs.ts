@@ -1,6 +1,6 @@
-import { type FoodSelectionResponse, type DailyMenuSelectPayload, type GetTotalPricePayload, type GetTotalPriceResponse } from "@/Types/selectDailyMenuTypes"
+import { type FoodSelectionResponse, type DailyMenuSelectPayload, type GetTotalPricePayload, type GetTotalPriceResponse } from "@/types/selectDailyMenuTypes"
 import commonAPI from "./commonAPI"
-import type { SelectedFoodResponse } from "@/Types/dailyMenuTypes"
+import type { SelectedFoodResponse } from "@/types/dailyMenuTypes"
 
 export const postSelectedDailyMenu=(payload:DailyMenuSelectPayload)=>{
     return commonAPI<FoodSelectionResponse>("POST",`foodSelction/selctFood`,payload)

@@ -5,7 +5,7 @@ import {
 } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { AlertTriangle } from "lucide-react"
-import type { ComplaintStatus, GetComplaint } from "@/Types/complaintTypes"
+import type { ComplaintStatus, GetComplaint } from "@/types/complaintTypes"
 import {
   Accordion,
   AccordionContent,

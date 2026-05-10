@@ -3,7 +3,7 @@ import ShowGroceryCard from "../Cards/ShowGroceryCard"
 import { useState } from "react"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
-import {type Grocery } from "@/Types/groceryTypes"
+import {type Grocery } from "@/types/groceryTypes"
 
 export default function CookDashboard() {
 

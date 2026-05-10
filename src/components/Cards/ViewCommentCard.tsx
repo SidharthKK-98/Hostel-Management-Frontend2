@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Star } from "lucide-react"
-import type { GetComment } from "@/Types/commentTypes"
+import type { GetComment } from "@/types/commentTypes"
 import { useRemoveComments } from "@/hooks/CommentHooks/useRemoveComments"
 
 type ViewCommentCardProps = {

@@ -1,5 +1,5 @@
 import { getFoodMenu } from "@/apis/MenuAPIs"
-import type { FoodMenuResponse } from "@/Types/MenuItemsTypes"
+import type { FoodMenuResponse } from "@/types/MenuItemsTypes"
 import { useQuery } from "@tanstack/react-query"
 
 

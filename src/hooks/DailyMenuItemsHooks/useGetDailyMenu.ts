@@ -1,5 +1,5 @@
 import { getDailyMenu } from "@/apis/DailyMenuAPIs"
-import { type DailyMenu } from "@/Types/dailyMenuTypes"
+import { type DailyMenu } from "@/types/dailyMenuTypes"
 import { useQuery } from "@tanstack/react-query"
 
 export const useGetDailyMenu=()=>{

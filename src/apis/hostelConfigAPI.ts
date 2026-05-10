@@ -1,7 +1,7 @@
 import  {type AddTotalRoomsParams,type RemoveUsersParams, type AddGuestSuccessResponse, 
     type AddUsersParams, type HostelConfigResponse, type RemoveGuestResponse,type AddTotalRoomResponse,
     type addRoomsResponse, type addRoomsParams,type RemoveRoomResponse, 
-   type GetSummaryResponse} from "@/Types/hostelConfigTypes"
+   type GetSummaryResponse} from "@/types/hostelConfigTypes"
 import commonAPI from "./commonAPI"
 
 

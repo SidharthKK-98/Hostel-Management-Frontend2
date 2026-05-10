@@ -1,5 +1,5 @@
 import { getMonthlyAmount } from "@/apis/authAPIs"
-import type { GetTotalPriceResponse } from "@/Types/selectDailyMenuTypes"
+import type { GetTotalPriceResponse } from "@/types/selectDailyMenuTypes"
 import { useQuery } from "@tanstack/react-query"
 
 export const useGetAmount = (userId: string) => {

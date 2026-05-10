@@ -1,4 +1,4 @@
-import type {CardProps} from "../Types/cardTypes"
+import type {CardProps} from "../types/cardTypes"
 import {
   Card as UICard,
   CardContent,

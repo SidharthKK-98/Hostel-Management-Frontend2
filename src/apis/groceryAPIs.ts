@@ -1,4 +1,4 @@
-import {type GroceryResponse, type AddGroceryParams, type GetGroceryResponse, type RestoreGroceryParam, type TakeGroceryParam, type UpdateGroceryParam, type RemoveGreceryParam } from "@/Types/groceryTypes";
+import {type GroceryResponse, type AddGroceryParams, type GetGroceryResponse, type RestoreGroceryParam, type TakeGroceryParam, type UpdateGroceryParam, type RemoveGreceryParam } from "@/types/groceryTypes";
 import commonAPI from "./commonAPI";
 
 

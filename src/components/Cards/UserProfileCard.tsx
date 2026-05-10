@@ -11,7 +11,7 @@ import {
   CardHeader,
 } from "@/components/ui/card"
 import { useGetAmount } from "@/hooks/ProfileHooks/useGetAmount"
-import type { GetUsers } from "@/Types/authTypes"
+import type { GetUsers } from "@/types/authTypes"
 
 type UserCardProps = {
   user: GetUsers

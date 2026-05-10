@@ -1,4 +1,4 @@
-import {type PostComplaintResponse, type ComplaintPayload,type GetComplaintsResponse } from "@/Types/complaintTypes";
+import {type PostComplaintResponse, type ComplaintPayload,type GetComplaintsResponse } from "@/types/complaintTypes";
 import commonAPI from "./commonAPI";
 
 export const postComplaint=(payload:ComplaintPayload)=>{

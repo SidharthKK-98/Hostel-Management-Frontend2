@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import type { User } from "@/Types/authTypes"
+import type { User } from "@/types/authTypes"
 
 interface ProfileCardProps {
   viewProfile: User | undefined

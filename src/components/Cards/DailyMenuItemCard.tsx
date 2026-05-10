@@ -2,7 +2,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import type { DailyMenuItemCardProps, MealType } from "@/Types/dailyMenuTypes";
+import type { DailyMenuItemCardProps, MealType } from "@/types/dailyMenuTypes";
 // import type { FoodItem } from "@/Types/MenuItemsTypes";
 
 function DailyMenuItemCard({item,selectedMeals,onChange}:DailyMenuItemCardProps) {

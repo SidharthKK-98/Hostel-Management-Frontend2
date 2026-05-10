@@ -19,7 +19,7 @@ import {
 import { useGetTotalPrice } from "@/hooks/MenuSelectionHooks/useGetTotalPrice"
 import { useCreatePayment } from "@/hooks/PaymentHooks/useCreatePayment"
 import { useVerifyPayment } from "@/hooks/PaymentHooks/useVerifyPayment"
-import type { RazorpayPaymentResponse } from "@/Types/paymentTypes"
+import type { RazorpayPaymentResponse } from "@/types/paymentTypes"
 import { useState } from "react"
 import { toast } from "sonner"
 

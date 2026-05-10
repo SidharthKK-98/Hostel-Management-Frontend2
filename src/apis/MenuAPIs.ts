@@ -1,4 +1,4 @@
-import {type SaveFoodItemResponse, type AddFoodItemsParams,type FoodMenuResponse, type UpdateFoodItemsParams } from "@/Types/MenuItemsTypes";
+import {type SaveFoodItemResponse, type AddFoodItemsParams,type FoodMenuResponse, type UpdateFoodItemsParams } from "@/types/MenuItemsTypes";
 import commonAPI from "./commonAPI";
 
 export const addMenu=(payload:AddFoodItemsParams)=>{

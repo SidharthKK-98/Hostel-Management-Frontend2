@@ -1,5 +1,5 @@
 import { getProfile } from "@/apis/authAPIs"
-import type { User } from "@/Types/authTypes"
+import type { User } from "@/types/authTypes"
 import { useQuery } from "@tanstack/react-query"
 
 export const useGetProfile =()=>{

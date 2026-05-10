@@ -7,7 +7,7 @@ import { Input } from "../ui/input"
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { type Grocery } from "@/Types/groceryTypes"
+import { type Grocery } from "@/types/groceryTypes"
 import { useRestoreGrocery } from "@/hooks/groceryHooks/useRestoreGrocery"
 import { useUseGrocery } from "@/hooks/groceryHooks/useUseGrocery"
 import { useRemoveGrocery } from "@/hooks/groceryHooks/useRemoveGrocery"

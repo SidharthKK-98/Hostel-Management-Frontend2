@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { useAddDailyMenu } from "@/hooks/DailyMenuItemsHooks/useAddDailyMenu";
-import type { AddDailyMenuTempCardProps } from "@/Types/dailyMenuTypes";
+import type { AddDailyMenuTempCardProps } from "@/types/dailyMenuTypes";
 
 
 

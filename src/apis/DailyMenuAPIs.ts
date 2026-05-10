@@ -1,4 +1,4 @@
-import { type AddDailyMenuResponse, type DailyMenuProps, type DailyMenu } from "@/Types/dailyMenuTypes";
+import { type AddDailyMenuResponse, type DailyMenuProps, type DailyMenu } from "@/types/dailyMenuTypes";
 import commonAPI from "./commonAPI";
 
 

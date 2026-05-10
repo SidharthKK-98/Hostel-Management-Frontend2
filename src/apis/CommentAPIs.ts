@@ -1,4 +1,4 @@
-import {type AddCommentResponse, type AddCommentPayload, type GetCommentsResponse, type EditCommentsPayload } from "@/Types/commentTypes";
+import {type AddCommentResponse, type AddCommentPayload, type GetCommentsResponse, type EditCommentsPayload } from "@/types/commentTypes";
 import commonAPI from "./commonAPI";
 
 export const addComment=(payload:AddCommentPayload)=>{

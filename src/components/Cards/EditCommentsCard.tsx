@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "../ui/textarea"
 import { toast } from "sonner"
 import { useEditComments } from "@/hooks/CommentHooks/useEditCommets"
-import type {  GetComment } from "@/Types/commentTypes"
+import type {  GetComment } from "@/types/commentTypes"
 
 type Props = {
   commentData:GetComment  | null

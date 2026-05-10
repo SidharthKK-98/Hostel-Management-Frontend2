@@ -2,7 +2,7 @@ import AddCommentCard from "../Cards/AddCommentCard"
 import ViewCommentCard from "../Cards/ViewCommentCard"
 import EditCommentCard from "../Cards/EditCommentsCard"
 import { useState } from "react"
-import type {  GetComment } from "@/Types/commentTypes"
+import type {  GetComment } from "@/types/commentTypes"
 import { useGetUserSpecificComments } from "@/hooks/authHooks/useGetUserSpecificComments"
 import { useGetProfile } from "@/hooks/ProfileHooks/useGetProfile"
 

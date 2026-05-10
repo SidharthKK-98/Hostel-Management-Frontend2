@@ -15,7 +15,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
 import { Textarea } from "@/components/ui/textarea"
 import { usePostComplaint } from "@/hooks/ComplaintHooks/usePostComplaint"
-import {type ComplaintCategory } from "@/Types/complaintTypes"
+import {type ComplaintCategory } from "@/types/complaintTypes"
 import { useState } from "react"
 import { toast } from "sonner"
 

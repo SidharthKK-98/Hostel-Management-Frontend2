@@ -2,10 +2,10 @@
 
 //login API
 
-import { type LoginResponse, type LoginPayload, type SignupPayload,type LogoutResponse, type UpdateProfileParams, type UpdateProfileResponse, type GetProfileResponse,type GetUsersResponse, type User } from "@/Types/authTypes";
+import { type LoginResponse, type LoginPayload, type SignupPayload,type LogoutResponse, type UpdateProfileParams, type UpdateProfileResponse, type GetProfileResponse,type GetUsersResponse, type User } from "@/types/authTypes";
 import commonAPI from "./commonAPI";
-import { type RoomUnassignedUsers } from "@/Types/hostelConfigTypes";
-import {type GetTotalPriceResponse } from "@/Types/selectDailyMenuTypes";
+import { type RoomUnassignedUsers } from "@/types/hostelConfigTypes";
+import {type GetTotalPriceResponse } from "@/types/selectDailyMenuTypes";
 
 export const signupAPI = (payload:SignupPayload)=>{
     return commonAPI<LoginResponse>("POST","/signup",payload)

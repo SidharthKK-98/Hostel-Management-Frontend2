@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card"
 import { useDeleteDailyMenu } from "@/hooks/DailyMenuItemsHooks/useDeleteDailyMenu";
 import { useGetProfile } from "@/hooks/ProfileHooks/useGetProfile";
-import type { DailyMenuCardProps } from "@/Types/dailyMenuTypes";
+import type { DailyMenuCardProps } from "@/types/dailyMenuTypes";
 
 
 

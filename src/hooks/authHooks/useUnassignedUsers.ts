@@ -1,5 +1,5 @@
 import { getRoomUnassignedUsers } from "@/apis/authAPIs"
-import type { User } from "@/Types/authTypes"
+import type { User } from "@/types/authTypes"
 // import { type RoomUnassignedUsers } from "@/Types/hostelConfigTypes"
 import { useQuery } from "@tanstack/react-query"
 

@@ -13,7 +13,7 @@ import { useLogin } from "@/hooks/authHooks/useLogin"
 import { useSignup } from "@/hooks/authHooks/useSignup"
 import { useState } from "react"
 import { AlertDemo } from "../Alert"
-import {type AlertType } from "@/Types/alertTypes"
+import {type AlertType } from "@/types/alertTypes"
 import { toast } from "sonner"
 import { useNavigate } from "react-router-dom"
 

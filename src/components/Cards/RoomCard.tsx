@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import type { RoomCardProps} from "@/Types/authTypes"
+import type { RoomCardProps} from "@/types/authTypes"
 
 
 

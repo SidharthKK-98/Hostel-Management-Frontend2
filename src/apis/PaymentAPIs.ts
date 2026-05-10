@@ -1,4 +1,4 @@
-import {type PaymentOrder, type PaymentParams ,type PaymentResponse} from "@/Types/paymentTypes";
+import {type PaymentOrder, type PaymentParams ,type PaymentResponse} from "@/types/paymentTypes";
 import commonAPI from "./commonAPI";
 
 export const createPayment=(payload:PaymentParams)=>{

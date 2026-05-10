@@ -4,7 +4,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card"
-import type { SelectedFoodResponse } from "@/Types/dailyMenuTypes"
+import type { SelectedFoodResponse } from "@/types/dailyMenuTypes"
 
 interface Props {
   DailyMenuPortion?: SelectedFoodResponse

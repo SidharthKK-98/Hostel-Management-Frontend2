@@ -1,6 +1,6 @@
 
 import { useMutation } from "@tanstack/react-query";
-import type { PaymentOrder, PaymentParams, } from "@/Types/paymentTypes";
+import type { PaymentOrder, PaymentParams, } from "@/types/paymentTypes";
 import { createPayment } from "@/apis/PaymentAPIs";
 
 export const useCreatePayment = () => {

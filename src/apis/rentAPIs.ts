@@ -1,4 +1,4 @@
-import { type RentResponse, type RentPayload } from "@/Types/rentTypes";
+import { type RentResponse, type RentPayload } from "@/types/rentTypes";
 import commonAPI from "./commonAPI";
 
 export const postRent=(payload:RentPayload)=>{
