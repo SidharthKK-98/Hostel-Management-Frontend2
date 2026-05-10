@@ -259,7 +259,7 @@ function ShowComplaint({ complaint,fromUser }: ShowComplaintProps) {
           {
             complaint.status !== "RESOLVED" &&(
                  <Button
-                    className="w-full rounded-2xl h-14 text-base font-bold bg-black hover:bg-black/90"
+                    className="w-full rounded-2xl h-10 text-base font-semibold bg-black hover:bg-black/90"
                     onClick={()=>handleUpdateComplaint(complaint._id)}
                 >
                     Take Action

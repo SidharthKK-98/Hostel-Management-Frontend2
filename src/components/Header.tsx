@@ -1,56 +1,64 @@
-import { useTheme } from '../context/Theme-provider'
-import { Hotel, Moon, Sun } from 'lucide-react'
-import { Link, useNavigate,  } from 'react-router-dom'
-import { Button } from './ui/button'
+import { Building2 } from "lucide-react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Button } from "./ui/button";
 
-interface Props{
-
-    fromHome:boolean
+interface Props {
+  fromHome: boolean;
 }
 
-function Header({fromHome}:Props) {
+function Header({ fromHome }: Props) {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    const {theme,setTheme}= useTheme()
-    const navigate = useNavigate()
-    const isDark= theme=="dark"
-
-    
+  const isLoginPage = location.pathname === "/login";
 
   return (
-    <header className='sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur py-2  supports-[backdrop-filter]:bg-background/60 '>
-        <div className='container mx-auto flex h-16 items-center justify-between px-4 '>
-            <Link to={"/"}>
-                <Hotel/>
-            </Link>
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur py-2 supports-[backdrop-filter]:bg-background/60">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4">
 
-            <div className='flex justify-evenly items-center w-1/4'>
-                {
-                    fromHome && (
+        {/* Logo */}
+        <Link to={"/"}>
+          <div className="rounded-lg bg-violet-100 p-2">
+            <Building2 className="h-5 w-5 text-violet-600" />
+          </div>
+        </Link>
 
-                        <div className='flex gap-10 items-center w-full mx-5'>
-                            <Link to={"/#features"} className='font-semibold'>Features</Link>
-                            <Link to={"/#review"} className='font-semibold'>Reviews</Link>
-                            <Button variant={"blue"} onClick={()=>navigate("/login")} className='text-white'>Login</Button>
+        <div className="flex items-center gap-4">
 
-                    </div>
+          {/* Desktop nav only on home */}
+          {fromHome && (
+            <div className="hidden md:flex gap-10 items-center">
+              <Link
+                to={"/#features"}
+                className="rounded-xl border px-5 py-2 text-sm font-medium text-gray-700 transition hover:bg-accent"
+              >
+                Features
+              </Link>
 
-                    )
-                }
-                <div onClick={()=>setTheme(isDark ? "light" : "dark")} className={`flex items-center cursor-pointer transition-transform duration-500
-                ${
-                    isDark? "rotate-180" : "rotate-0"}
-                `}>
-                    {
-                        isDark ? <Sun className='h-6 w-6 text-yellow-500 rotate-0 transition-all'/> : <Moon className='h-6 w-6 text-black rotate-0 transition-all'/>
-                    }
-
-                </div>
+              <Link
+                to={"/#review"}
+                className="rounded-xl border px-5 py-2 text-sm font-medium text-gray-700 transition hover:bg-accent"
+              >
+                Reviews
+              </Link>
             </div>
+          )}
 
+          {/* Login button hidden on login page */}
+          {!isLoginPage && (
+            <Button
+              variant={"blue"}
+              onClick={() => navigate("/login")}
+              className="rounded-xl px-6 text-sm font-medium text-white"
+            >
+              Login
+            </Button>
+          )}
 
         </div>
+      </div>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

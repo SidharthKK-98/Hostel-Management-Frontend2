@@ -1,196 +1,194 @@
 import { Button } from "@/components/ui/button"
 import {
   Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
+  
 } from "@/components/ui/card"
+import { Input } from "../ui/input"
+import { useState } from "react"
+import { toast } from "sonner"
 
-import {type Grocery } from "@/Types/groceryTypes";
-import { Input } from "../ui/input";
-import  { useState } from "react";
-import { useRestoreGrocery } from "@/hooks/groceryHooks/useRestoreGrocery";
-import { toast } from "sonner";
-import { useGetProfile } from "@/hooks/ProfileHooks/useGetProfile";
-import { useUseGrocery } from "@/hooks/groceryHooks/useUseGrocery";
-import { useRemoveGrocery } from "@/hooks/groceryHooks/useRemoveGrocery";
+import { type Grocery } from "@/Types/groceryTypes"
+import { useRestoreGrocery } from "@/hooks/groceryHooks/useRestoreGrocery"
+import { useUseGrocery } from "@/hooks/groceryHooks/useUseGrocery"
+import { useRemoveGrocery } from "@/hooks/groceryHooks/useRemoveGrocery"
+import { useGetProfile } from "@/hooks/ProfileHooks/useGetProfile"
+
 type Props = {
   grocery: Grocery
   onUpdate: (grocery: Grocery) => void
-
 }
 
-function ShowGroceryCard({grocery,onUpdate }:Props) {
+function ShowGroceryCard({ grocery, onUpdate }: Props) {
+  const [qty, setQty] = useState("")
+  const [useQty, setUseqty] = useState("")
 
-        const[qty,setQty] = useState("")
-        const[useQty,setUseqty] = useState("")
+  const { name, unit, lastAddedStock, currentStock, predictedOutDate } = grocery
 
-        const {name,unit,lastAddedStock,currentStock,predictedOutDate} = grocery
-        const {mutate:restoreItem} = useRestoreGrocery()
-        const {mutate:consumeGrocery} = useUseGrocery()
-        const {mutate:removeGrocery} = useRemoveGrocery()
-        const {data:profile} =useGetProfile()
+  const { mutate: restoreItem } = useRestoreGrocery()
+  const { mutate: consumeGrocery } = useUseGrocery()
+  const { mutate: removeGrocery } = useRemoveGrocery()
+  const { data: profile } = useGetProfile()
 
-            const today = new Date()
-            today.setHours(0, 0, 0, 0)
-            const todayTime = today.getTime()
+  const capacity = 100 // static for UI (you can make dynamic later)
+  const percent = (currentStock / capacity) * 100
 
-        const diff = predictedOutDate? (() => {
-                        const date = new Date(predictedOutDate)
-                        date.setHours(0, 0, 0, 0) 
-                        return date.getTime() - todayTime
-                        })()
-                    : null
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const todayTime = today.getTime()
 
-        const daysLeft = diff !== null? Math.ceil(diff / (1000 * 60 * 60 * 24)) : null
-            
-        
-        
+  const diff = predictedOutDate
+    ? (() => {
+        const date = new Date(predictedOutDate)
+        date.setHours(0, 0, 0, 0)
+        return date.getTime() - todayTime
+      })()
+    : null
 
-        const predictedDate = predictedOutDate ? new Date(predictedOutDate).toLocaleDateString("en-GB"):null
+  const daysLeft =
+    diff !== null ? Math.ceil(diff / (1000 * 60 * 60 * 24)) : null
 
-        const restoreGrocery = ()=>{
-            if(!qty){
-                toast.error("Please fill restoring quantity")
-                return
-            }
-            const payload = {name:name,unit:unit,restoringAmount:Number(qty)}
+  const predictedDate = predictedOutDate
+    ? new Date(predictedOutDate).toLocaleDateString("en-GB")
+    : null
 
-            restoreItem(payload,{
-                onSuccess:()=>{
-                    setQty("")
-                }
-            })
-        }
+  const restoreGrocery = () => {
+    if (!qty) {
+      toast.error("Please fill restoring quantity")
+      return
+    }
 
-        const consumeItem=()=>{
-              if(!useQty){
-                toast.error("Please fill consuming quantity")
-                return
-            }
+    restoreItem(
+      { name, unit, restoringAmount: Number(qty) },
+      { onSuccess: () => setQty("") }
+    )
+  }
 
-            const payload = {groceryId:grocery._id,unit:unit,qty:Number(useQty)}
+  const consumeItem = () => {
+    if (!useQty) {
+      toast.error("Please fill consuming quantity")
+      return
+    }
 
-            consumeGrocery(payload,{
-                onSuccess:()=>{
-                    setUseqty("")
-                }
-            })
+    consumeGrocery(
+      { groceryId: grocery._id, unit, qty: Number(useQty) },
+      { onSuccess: () => setUseqty("") }
+    )
+  }
 
-        }
-
-        const removeItem =()=>{
-            if (!grocery?._id) return
-
-            const payload = {_id:grocery?._id}
-
-            removeGrocery(payload)
-
-        }
+  const removeItem = () => {
+    if (!grocery?._id) return
+    removeGrocery({ _id: grocery._id })
+  }
 
   return (
+    <Card className="max-w-sm mx-auto rounded-2xl shadow-md p-4 space-y-4">
 
-    <div>
+      {/* Header */}
+      <div className="flex justify-between items-center">
+        <div>
+          <h2 className="text-lg font-semibold">{name}</h2>
+          <p className="text-xs text-gray-500">Kitchen Stock</p>
+        </div>
 
-        <Card  className="mx-auto w-full max-w-sm">
-            <CardHeader>
-            <CardTitle>{name}</CardTitle>
-            
-            </CardHeader>
-            <CardContent>
-                <div>
-                Current Stock : {currentStock} {unit}
-                </div>
-                <div>
-                    Last Added Stock : {lastAddedStock} {unit}
-                </div>
-                <div>
-                    {
-                        (predictedOutDate!=null)&&(
-                            <p> Estimate Date : {predictedDate}</p>
+        {daysLeft !== null && daysLeft <= 2 && (
+          <span className="text-xs bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
+            Low Soon
+          </span>
+        )}
+      </div>
 
-                        )
-                       
-                    }
-                </div>
-            </CardContent>
-            <CardFooter className="block h-45 overflow-y-auto ">
-                {
-                    profile?.role=="admin"?(
-                        <div>
-                                <div>
+      {/* Stock Section */}
+      <div className="bg-gray-100 p-3 rounded-xl">
+        <div className="flex justify-between text-sm mb-2">
+          <span className="text-gray-500">Current Stock</span>
+          <span className="font-medium">{currentStock} {unit}</span>
+        </div>
 
-                                    {daysLeft !== null && daysLeft < 0 && (
-                                        <h2 className="text-red-700 font-semibold">Expired</h2>
-                                    )}
+        {/* Progress Bar */}
+        <div className="w-full h-2 bg-gray-300 rounded-full overflow-hidden">
+          <div
+            className="h-full bg-yellow-400"
+            style={{ width: `${percent}%` }}
+          />
+        </div>
 
-                                    {daysLeft !== null && daysLeft === 0 && (
-                                        <h2 className="text-red-600 font-semibold">Finishes Today</h2>
-                                    )}
+        <div className="flex justify-between text-xs mt-1 text-gray-500">
+          <span>0</span>
+          <span>Capacity {capacity} {unit}</span>
+        </div>
+      </div>
 
-                                    {daysLeft !== null && daysLeft === 1 && (
-                                        <h2 className="text-orange-500 font-semibold">Finishes Tomorrow</h2>
-                                    )}
+      {/* Info Boxes */}
+      <div className="grid grid-cols-2 gap-3 text-center">
+        <div className="bg-gray-100 p-3 rounded-xl">
+          <p className="text-xs text-gray-500">Last Added</p>
+          <p className="font-semibold">{lastAddedStock} {unit}</p>
+        </div>
 
-                                    {daysLeft !== null && daysLeft > 1 && daysLeft <= 2 && (
-                                        <h2 className="text-yellow-500 font-semibold">Low Stock Soon</h2>
-                                    )}
+        <div className="bg-gray-100 p-3 rounded-xl">
+          <p className="text-xs text-gray-500">Estimate Date</p>
+          <p className="font-semibold">{predictedDate || "-"}</p>
+        </div>
+      </div>
 
-                                </div>
+      {/* Admin Section */}
+      {profile?.role === "admin" ? (
+        <>
+          <div>
+            <p className="text-sm font-medium mb-2">Restore Stock</p>
+            <div className="flex gap-2">
+              <Input
+                type="number"
+                placeholder="Enter quantity"
+                value={qty}
+                onChange={(e) => setQty(e.target.value)}
+              />
+              <span className="px-3 py-2 bg-yellow-100 rounded-lg text-sm">
+                {unit}
+              </span>
+            </div>
+          </div>
 
-                                <div className="space-y-2 my-2 text-center">
+          <Button className="w-full bg-black text-white" onClick={restoreGrocery}>
+            Restore
+          </Button>
 
-                                    <label className=" font-medium">Restore Stock</label>
-                                    <Input type="number" placeholder="Enter quantity"
-                                        value={qty}
-                                        onChange={e=>setQty(e.target.value)}
-                                    />
+          <div className="flex gap-3">
+            <Button
+              variant="outline"
+              className="flex-1"
+              onClick={() => onUpdate(grocery)}
+            >
+              ✏️ Update
+            </Button>
 
-                                </div>
+            <Button
+              variant="outline"
+              className="flex-1 text-red-600 border-red-300"
+              onClick={removeItem}
+            >
+              🗑 Remove
+            </Button>
+          </div>
+        </>
+      ) : (
+        <>
+          <div>
+            <p className="text-sm font-medium mb-2">Use Item</p>
+            <Input
+              type="number"
+              placeholder="Enter quantity"
+              value={useQty}
+              onChange={(e) => setUseqty(e.target.value)}
+            />
+          </div>
 
-                                <Button variant="outline" size="sm" className="w-full"
-                                    onClick={restoreGrocery}
-                                >
-                                    Restore
-                                </Button>
-
-                                <div className="flex justify-center gap-4">
-                                        <Button variant="outline" size="sm" className="w-auto my-2" onClick={()=>{ onUpdate(grocery)}}>
-                                            Update
-                                        </Button>
-
-                                        <Button variant="outline" size="sm" className="w-auto my-2 bg-red-500"
-                                            onClick={removeItem}
-                                        >
-                                            Remove
-                                        </Button>
-                                </div>
-                        </div>
-                                
-                    ) :
-
-                    (
-                        <div>
-                                <div className="space-y-2 my-2">
-                                    <label className="text-sm font-medium">Use Item</label>
-                                    <Input type="number" placeholder="Enter quantity"
-                                        value={useQty}
-                                        onChange={e=>setUseqty(e.target.value)}
-                                    />
-                                </div>
-                                <Button variant="outline" size="sm" className="w-full"
-                                    onClick={consumeItem}
-                                >
-                                    Consume
-                                </Button>
-                        </div>
-                    )
-                }
-                 
-            </CardFooter>
-        </Card>
-    </div>
+          <Button className="w-full" onClick={consumeItem}>
+            Consume
+          </Button>
+        </>
+      )}
+    </Card>
   )
 }
 

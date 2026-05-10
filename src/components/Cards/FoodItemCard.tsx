@@ -20,29 +20,26 @@ function FoodItemCard({
     <div>
       <div className="max-w-[300px] overflow-hidden rounded-[2rem] bg-[#f8f8f8] shadow-md">
         {/* Top Section */}
-        <div className="relative flex h-[210px] flex-col items-center justify-center bg-[#f3f3f5] px-6 py-5">
+        <div className="relative flex h-[215px] flex-col items-center justify-center bg-[#f3f3f5] px-6 py-5">
           {/* Price Badge */}
           <div className="absolute right-5 top-4 rounded-full border border-gray-200 bg-white px-4 py-1 text-lg font-bold text-black shadow-sm">
             ₹ {price}
           </div>
 
           {/* Food Icon/Image */}
-        <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-white text-gray-300 shadow-sm">
-  {image ? (
-    <img
-      src={image}
-      alt="food image"
-      className="h-full w-full rounded-full object-cover"
-    />
-  ) : (
-    <UtensilsCrossed className="h-10 w-10" />
-  )}
-</div>
+        <div className="mb-4 h-56 w-full overflow-hidden rounded-3xl bg-white shadow-sm">
+          {image ? (
+            <img
+              src={image}
+              alt="food image"
+              className="h-full w-full  object-cover"
+            />
+          ) : (
+            <UtensilsCrossed className="h-10 w-10" />
+          )}
+      </div>
 
-          {/* Food Name */}
-          <h2 className="text-2xl font-bold text-gray-300">
-            {name}
-          </h2>
+        
         </div>
 
         {/* Bottom Section */}

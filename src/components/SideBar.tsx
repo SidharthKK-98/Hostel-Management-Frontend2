@@ -188,9 +188,7 @@ function SideBar() {
                   {item.name}
                 </div>
 
-                {/* <div className="flex h-6 w-6 items-center justify-center rounded-full bg-red-100 text-xs font-bold text-red-500">
-                  3
-                </div> */}
+                
               </Button>
             </NavLink>
           ))}
@@ -198,7 +196,7 @@ function SideBar() {
       </div>
 
       {/* Logout */}
-      <div className="mt-auto">
+      <div className="mt-2">
         <Button
           onClick={() => Logout()}
           disabled={isPending}

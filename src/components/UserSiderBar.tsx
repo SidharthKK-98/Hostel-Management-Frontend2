@@ -117,7 +117,7 @@ function UserSiderBar() {
       </div>
 
       {/* Logout */}
-      <div className="mt-auto pt-6">
+      <div className="mt-2 pt-6">
         <Button
           onClick={() => Logout()}
           disabled={isPending}

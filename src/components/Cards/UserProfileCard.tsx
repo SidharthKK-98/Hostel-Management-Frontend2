@@ -1,11 +1,9 @@
 import {
-  Bell,
   CreditCard,
   DoorClosed,
   Mail,
   ReceiptText,
 } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -159,10 +157,7 @@ function UserProfileCard({ user }: UserCardProps) {
         </CardContent>
 
         <CardFooter>
-          <Button className="h-14 w-full rounded-2xl bg-black text-base font-semibold text-white hover:bg-black">
-            <Bell className="mr-2 h-5 w-5" />
-            Send Notification
-          </Button>
+         
         </CardFooter>
       </Card>
     </div>

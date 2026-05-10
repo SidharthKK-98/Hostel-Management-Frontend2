@@ -63,6 +63,27 @@ function PaymentCard() {
 
   const years = ["2024", "2025", "2026", "2027"]
 
+  const isCurrentOrPastMonth = () => {
+        const now = new Date()
+
+        const currentMonth = now.getMonth() + 1
+        const currentYear = now.getFullYear()
+
+        const selectedMonth = Number(month)
+        const selectedYear = Number(year)
+
+        if (selectedYear < currentYear) return true
+
+        if (
+          selectedYear === currentYear &&
+          selectedMonth < currentMonth
+        ) {
+          return true
+        }
+
+        return false
+}
+
   const pollPaymentStatus = async () => {
   let attempts = 0;
 
@@ -71,7 +92,7 @@ function PaymentCard() {
 
     const isCaptured = res?.data?.payment?.some(
       (p) => p.status === "captured"
-    );
+    )
 
     if (isCaptured) {
       setHasCheckedPayment(true)
@@ -107,12 +128,20 @@ function PaymentCard() {
 
   const makePayment=async()=>{
 
+    
     try{
          if (!data?.data) {
             console.error("Amount is missing");
             return;
         }
-            
+          
+         if (!isCurrentOrPastMonth()) {
+        return toast.error(
+          "Payment is allowed only for current or completed months"
+        )
+    }
+
+        
     const payload={amount:data.data.monthlyTotal,month:Number(month),year:Number(year)}
     const order = await payment(payload)
      const { key, amount, currency, orderId, notes } = order;
