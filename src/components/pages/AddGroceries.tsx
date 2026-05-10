@@ -18,7 +18,7 @@ function AddGroceries() {
             today.setHours(0, 0, 0, 0)
             const todayTime = today.getTime()
 
-            return groceryData.slice().sort((a, b) => {
+            return groceryData.slice().sort((a:Grocery, b:Grocery) => {
                 if (!a.predictedOutDate) return 1
                 if (!b.predictedOutDate) return -1
 
