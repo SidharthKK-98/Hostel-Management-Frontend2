@@ -19,7 +19,8 @@ function AddDailyMenuTempCard({selectedDate,selectedMenu,onSuccessAdd}:AddDailyM
 
     const{mutate}=useAddDailyMenu()
 
-    console.log(selectedDate,selectedMenu);
+    // console.log(selectedDate,selectedMenu);
+
     const Today = selectedDate.toLocaleDateString("en-IN", {
             day: "2-digit",
             month: "short",
@@ -29,7 +30,7 @@ function AddDailyMenuTempCard({selectedDate,selectedMenu,onSuccessAdd}:AddDailyM
     const handleAddDailyMenu=()=>{
 
         mutate({
-            date:selectedDate.toISOString(),
+            date:selectedDate.toLocaleDateString("en-CA"),
             morning:selectedMenu.morning.map(item=>item._id),
             noon:selectedMenu.noon.map(item=>item._id),
             night:selectedMenu.night.map(item=>item._id)
