@@ -20,7 +20,7 @@ function App() {
 
            <RouterProvider router={Layout}/>
 
-                 <ReactQueryDevtools initialIsOpen={true} />
+                 {/* <ReactQueryDevtools initialIsOpen={true} /> */}
 
 
        {/* </ThemeProvider> */}

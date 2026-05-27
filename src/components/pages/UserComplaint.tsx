@@ -1,12 +1,23 @@
 import { useGetComplaintHistory } from "@/hooks/ComplaintHooks/useGetComplaintHistory"
 import PostComplaintCard from "../Cards/PostComplaintCard"
 import ShowComplaint from "../Cards/ShowComplaint";
+import usePagination from "@/hooks/ui/usePagination";
+import Pagination from "../Pagination";
 
 function UserComplaint() {
 
   const {data:complaintHistory} = useGetComplaintHistory()
-  console.log("complaintHistory",complaintHistory);
   const fromUser = true
+
+  const {
+  currentPage,
+  setCurrentPage,
+  totalPages,
+  paginatedData,
+} = usePagination({
+  data: complaintHistory?.data || [],
+  itemsPerPage: 3,
+})
   
 
   return (
@@ -17,11 +28,17 @@ function UserComplaint() {
         <h1 className="text-center font-semibold my-2">Complaint History</h1>
         <div className="lg:grid grid-cols-3 gap-4">
           {
-            complaintHistory?.data?.map((complaint)=>(
+            paginatedData?.map((complaint)=>(
               <ShowComplaint key={complaint._id} complaint={complaint} fromUser={fromUser}/>
             )) 
           }
         </div>
+
+         <Pagination
+            currentPage={currentPage}
+            totalPage={totalPages}
+            onPageChange={setCurrentPage}
+        />
 
     
     </div>

@@ -4,6 +4,8 @@ import ShowGroceryCard from "../Cards/ShowGroceryCard"
 import { useMemo, useState } from "react"
 import type { Grocery } from "../../types/groceryTypes"
 import UpdateGroceryDataCard from "../Cards/UpdateGroceryDataCard"
+import usePagination from "@/hooks/ui/usePagination"
+import Pagination from "../Pagination"
 
 function AddGroceries() {
 
@@ -33,9 +35,19 @@ function AddGroceries() {
 
 }, [groceryData])
 
+const {
+  currentPage,
+  setCurrentPage,
+  totalPages,
+  paginatedData,
+} = usePagination({
+  data: sortedGroceries || [],
+  itemsPerPage: 3,
+})
+
   return (
     <div>
-        <h1 className="font-semibold text-2xl text-center">Groceries</h1>
+        <h1 className="font-bold text-3xl text-center m-4">Groceries</h1>
 
         <div className="m-4 lg:flex "> 
             {isUpdateOpen && selectedGrocery ? (
@@ -52,7 +64,7 @@ function AddGroceries() {
 
         <div className="grid  lg:grid-cols-3 gap-4 m-4">
             {
-                sortedGroceries?.map((grocery)=>(
+                paginatedData?.map((grocery)=>(
                     <ShowGroceryCard  key={grocery._id} grocery={grocery}
                         onUpdate={(grocery)=>{
                             setSelectedGrocery(grocery)
@@ -62,6 +74,12 @@ function AddGroceries() {
                 ))
             }
         </div>
+
+         <Pagination
+            currentPage={currentPage}
+            totalPage={totalPages}
+            onPageChange={setCurrentPage}
+        />
     </div>
   )
 }

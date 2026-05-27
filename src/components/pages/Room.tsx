@@ -94,7 +94,7 @@ function Room() {
 
         {
             selectedRoom && (
-                <Card className="lg:w-3/4  bg-white ">
+                <Card className="lg:w-3/4  bg-white m-6">
                     <CardHeader className="flex justify-between text-black items-center">
                             <CardTitle className="text-black">Details of Room : {selectedRoom?.roomNumber}</CardTitle>
                              <Button className="font-semibold " variant={"ghost"} onClick={()=>setSelectedRoomId(null)}><X/></Button> 

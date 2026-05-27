@@ -29,7 +29,6 @@ function DailyMenu() {
     const {data:DailyMenu} = useGetDailyMenu()
     const {data:DailyMenuPortion} = useDailyMenuPortion(portionDate,{enabled: !!portionDate})
 
-    console.log(DailyMenuPortion);
 
     const getTomorrow =()=>{
       const today = new Date()
@@ -80,6 +79,10 @@ function DailyMenu() {
 
   return (
     <div className='text-black m-4'>
+
+      <div className="font-bold text-3xl text-center m-4">
+        Meal Schedule 
+      </div>
 
     <div className="flex justify-around">
         <DatePicker selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>

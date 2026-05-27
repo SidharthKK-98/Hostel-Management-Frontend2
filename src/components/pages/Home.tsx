@@ -4,6 +4,8 @@ import {  ShieldCheck, UtensilsCrossed, MessageSquareText, ArrowDown } from "luc
 
 import ViewCommentCard from "../Cards/ViewCommentCard";
 import { useGetComments } from "@/hooks/CommentHooks/useGetComments";
+import usePagination from "@/hooks/ui/usePagination";
+import Pagination from "../Pagination";
 
 type OutletContextType = {
   setFromHome: React.Dispatch<React.SetStateAction<boolean>>;
@@ -47,7 +49,18 @@ function Home() {
       icon: <MessageSquareText className="h-6 w-6 text-orange-600" />,
       bg: "bg-orange-100",
     },
-  ];
+  ]
+
+  
+   const {
+  currentPage,
+  setCurrentPage,
+  totalPages,
+  paginatedData,
+} = usePagination({
+  data: comments?.data || [],
+  itemsPerPage: 3,
+})
 
   return (
     <div className="bg-white text-black">
@@ -58,7 +71,6 @@ function Home() {
           <div className="flex items-center gap-3">
            
 
-            {/* <h2 className="text-2xl font-semibold">HostelOS</h2> */}
           </div>
 
           
@@ -230,10 +242,16 @@ function Home() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-3">
-          {comments?.data.map((comment) => (
+          {paginatedData?.map((comment) => (
             <ViewCommentCard comment={comment} key={comment._id} />
           ))}
         </div>
+
+         <Pagination
+            currentPage={currentPage}
+            totalPage={totalPages}
+            onPageChange={setCurrentPage}
+        />
       </section>
     </div>
   );

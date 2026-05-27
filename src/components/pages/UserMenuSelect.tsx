@@ -11,9 +11,12 @@ function UserMenuSelect() {
     <div >
       {
         length===0 ?(
-          <h1 className="text-center text-2xl font-semibold">No Menu created</h1>
-        ):
-        (
+          <div className="flex items-center justify-center h-[70vh]">
+              <h1 className="text-3xl font-bold text-red-700">
+                No Menu Created
+              </h1>
+            </div>        
+      ):(
           <div className="m-4 h-lvh overflow-y-scroll">
 
          {

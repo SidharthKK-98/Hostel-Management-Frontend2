@@ -4,12 +4,31 @@ import { useState } from "react"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import {type Grocery } from "@/types/groceryTypes"
+import usePagination from "@/hooks/ui/usePagination"
+import Pagination from "../Pagination"
 
 export default function CookDashboard() {
 
         const{data:groceryData} = useGetGrocery()
         const[search,setSearch] = useState("")
         const[filteredGroceries ,setFilteredGroceries ] = useState<Grocery[]>([])
+
+
+        const displayGroceries =
+            filteredGroceries.length > 0
+            ? filteredGroceries
+            : groceryData || []
+
+        const {
+        currentPage,
+        setCurrentPage,
+        totalPages,
+        paginatedData,
+        } = usePagination({
+        data: displayGroceries,
+        itemsPerPage: 3,
+    })
+
 
         const searchItems = ()=>{
             
@@ -38,13 +57,19 @@ export default function CookDashboard() {
         <div className="grid  lg:grid-cols-3 gap-4 m-4">
             {
              
-                 (filteredGroceries.length > 0 ? filteredGroceries:groceryData)?.map((grocery)=>(
+                 paginatedData?.map((grocery)=>(
                     <ShowGroceryCard  key={grocery._id} grocery={grocery}   onUpdate={handleUpdate}
 />
                 ))
             
             }
         </div>
+
+         <Pagination
+        currentPage={currentPage}
+        totalPage={totalPages}
+        onPageChange={setCurrentPage}
+      />
 
     </div>
   )

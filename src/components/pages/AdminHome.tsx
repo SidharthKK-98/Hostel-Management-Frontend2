@@ -26,7 +26,7 @@ function AdminHome() {
       
   return (
     <div className="p-4">
-        <h1 className="text-center font-semibold text-2xl p-2"> Profile</h1>
+        <h1 className="text-center font-bold text-3xl p-2 m-4"> Profile</h1>
 
         <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
                 <StatCard title="Total Rooms" value={RoomSummary?.totalRooms} sub={` Occupied Rooms : ${occupiedRoom} / vaccant : ${RoomSummary?.emptyRooms} Rooms`} />
@@ -52,9 +52,9 @@ function AdminHome() {
               <RentCard/>
             </div>
 
-            <div>
+            {/* <div>
               <h1 className="font-semibold text-xl">Quick Actions</h1>
-            </div>
+            </div> */}
         </div>
 
     </div>
