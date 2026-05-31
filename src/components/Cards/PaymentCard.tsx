@@ -28,8 +28,9 @@ function PaymentCard() {
   const [month, setMonth] = useState<string>("")
   const [year, setYear] = useState<string>("")
   const [showPay, setShowPay] = useState(false)
-  const [hasCheckedPayment, setHasCheckedPayment] = useState(false)
-  const [isPaying, setIsPaying] = useState(false);
+  const [paymentBlocked, setPaymentBlocked] = useState(false)
+  const [isPaying, setIsPaying] = useState(false)
+  const [checkingPayment, setCheckingPayment] = useState(false)
 
     const {mutate:fetchPrice,data} = useGetTotalPrice()
     const {mutateAsync:payment} = useCreatePayment()
@@ -42,9 +43,15 @@ function PaymentCard() {
         enabled:false
     })
   
-        const paymentCaptured =hasCheckedPayment&& existingPayment?.payment?.some(
+
+
+
+        const paymentCaptured = existingPayment?.payment?.some(
         (p) => p.status === "captured"
-        )
+        ) ?? false
+
+        console.log("paymentCaptured", paymentCaptured)
+
 
      const months = [
     { label: "January", value: "1" },
@@ -97,7 +104,7 @@ function PaymentCard() {
     )
 
     if (isCaptured) {
-      setHasCheckedPayment(true)
+      setCheckingPayment(false)
       setIsPaying(false)
       toast.success("Payment successful ")
       return;
@@ -106,8 +113,9 @@ function PaymentCard() {
     attempts++;
     await new Promise((r) => setTimeout(r, 2000))
   }
-
-  setIsPaying(false);
+  
+  setCheckingPayment(false)
+  setIsPaying(false)
   toast.error("Verification delayed. Please refresh.")
 }
 
@@ -116,17 +124,32 @@ function PaymentCard() {
     if(!month || !year){
         return toast.error("select required fields")
     }
-    setHasCheckedPayment(false)
+     setPaymentBlocked(false)
+     setCheckingPayment(true)
 
     const payload={month:Number(month),year:Number(year)}
+
     fetchPrice(payload,{
         onSuccess:async()=>{
             setShowPay(true)
-            await verifyPayment()
-            setHasCheckedPayment(true)
+            const result = await verifyPayment()
+            
+            
+            if (result.error) {
+
+              setPaymentBlocked(true)
+            }
+
+            setCheckingPayment(false)
+
+        },
+
+        onError: () => {
+          setCheckingPayment(false) 
         }
     })
   }
+
 
   const makePayment=async()=>{
 
@@ -200,7 +223,7 @@ function PaymentCard() {
                 </CardDescription>
             </CardHeader>
             <CardContent className="flex gap-2">
-                    <Select onValueChange={(value)=>{setMonth(value); setShowPay(false)}}>
+              <Select onValueChange={(value)=>{setMonth(value); setShowPay(false);setPaymentBlocked(false)}}>
                         <SelectTrigger>
                         <SelectValue placeholder="Select Month" />
                         </SelectTrigger>
@@ -243,13 +266,20 @@ function PaymentCard() {
                     )
                 }
                 {
-                      showPay && !hasCheckedPayment && (
-    <p>Checking payment status...</p>
-  )
-}
+                      checkingPayment  && !paymentCaptured && (
+                        <p>Checking payment status...</p>
+                      )                         
+                }
 
-{
-                showPay && hasCheckedPayment && paymentCaptured && (
+                 {paymentBlocked && (
+                    <p className="text-red-500 text-center">
+                      You cannot make payments for months before your joining date.
+                    </p>
+                  )}
+
+
+                {
+                showPay  && paymentCaptured && (
                     <p className="text-green-600 font-medium">
                     Payment already completed ✅
                     </p>
@@ -257,7 +287,7 @@ function PaymentCard() {
                 }
 
                 {
-                showPay && hasCheckedPayment && !paymentCaptured && (
+                showPay  && !paymentCaptured && !paymentBlocked  && !checkingPayment &&(
                     <Button
                     variant="outline"
                     size="sm"
