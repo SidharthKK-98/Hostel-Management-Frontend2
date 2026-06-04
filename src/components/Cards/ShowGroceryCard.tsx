@@ -12,6 +12,7 @@ import { useRestoreGrocery } from "@/hooks/groceryHooks/useRestoreGrocery"
 import { useUseGrocery } from "@/hooks/groceryHooks/useUseGrocery"
 import { useRemoveGrocery } from "@/hooks/groceryHooks/useRemoveGrocery"
 import { useGetProfile } from "@/hooks/ProfileHooks/useGetProfile"
+import { Trash2 } from "lucide-react"
 
 type Props = {
   grocery: Grocery
@@ -29,7 +30,7 @@ function ShowGroceryCard({ grocery, onUpdate }: Props) {
   const { mutate: removeGrocery } = useRemoveGrocery()
   const { data: profile } = useGetProfile()
 
-  const capacity = 100 // static for UI (you can make dynamic later)
+  const capacity = 100 
   const percent = (currentStock / capacity) * 100
 
   const today = new Date()
@@ -91,8 +92,8 @@ function ShowGroceryCard({ grocery, onUpdate }: Props) {
         </div>
 
         {daysLeft !== null && daysLeft <= 2 && (
-          <span className="text-xs bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
-            Low Soon
+          <span className="text-xs bg-yellow-100 text-red-700 px-3 py-1 rounded-full">
+            Stock Running Low
           </span>
         )}
       </div>
@@ -149,7 +150,7 @@ function ShowGroceryCard({ grocery, onUpdate }: Props) {
             </div>
           </div>
 
-          <Button className="w-full bg-black text-white" onClick={restoreGrocery}>
+          <Button className="w-full bg-green-600 text-white" onClick={restoreGrocery}>
             Restore
           </Button>
 
@@ -167,7 +168,7 @@ function ShowGroceryCard({ grocery, onUpdate }: Props) {
               className="flex-1 text-red-600 border-red-300"
               onClick={removeItem}
             >
-              🗑 Remove
+               <Trash2 size={18} /> Remove
             </Button>
           </div>
         </>

@@ -8,6 +8,8 @@ import { useGetAllUnresolvedComplaints } from "@/hooks/ComplaintHooks/useGetAllU
 import { useGetDailyMenu } from "@/hooks/DailyMenuItemsHooks/useGetDailyMenu"
 import { getTomorrow } from "@/utils/getTomorrow"
 import RentCard from "../Cards/RentCard"
+import NotificationCard from "../Cards/NotificationCard"
+import { useGetNotifications } from "@/hooks/NotificationHooks/useGetNotifications"
 
 function AdminHome() {
 
@@ -20,6 +22,7 @@ function AdminHome() {
       const {data:complaint}= useGetAllUnresolvedComplaints()
       const occupiedRoom:number = (RoomSummary?.fullRooms?? 0) + (RoomSummary?.partiallyOccupiedRooms?? 0)
       const {data:dailyMenu} = useGetDailyMenu()
+      const {data:GroceryNotification} = useGetNotifications()
 
       const isTomorrow = dailyMenu?.data?.some(menu => getTomorrow(menu.date)) ?? false
 
@@ -52,9 +55,15 @@ function AdminHome() {
               <RentCard/>
             </div>
 
-            {/* <div>
-              <h1 className="font-semibold text-xl">Quick Actions</h1>
-            </div> */}
+            <div>
+                {
+                  GroceryNotification && GroceryNotification.length > 0 &&(
+                          <NotificationCard GroceryNotification={GroceryNotification ?? []}/>
+
+                  )
+                }
+
+            </div>
         </div>
 
     </div>
